@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="./src/css/lib/bootstrap.min.css">
+    <!-- Custom styles -->
+    <link href="./src/css/dashboard.css" rel="stylesheet">
+</head>
+
+<body ng-controller="backIntegCntrl">
+    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">{{title}}</a>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="#">Sign out</a>
+            </li>
+        </ul>
+    </nav>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                <span data-feather="home"></span>
+                                Back End Task
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="file"></span>
+                                Sample Page
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+    
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Back End Records Reports </h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group mr-2">
+                            <label class="btn btn-sm btn-outline-secondary">
+                                Import CSV/XML
+                                <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)" hidden>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <p>Total no of Duplicate Reference Count is <span style="color: red; font-weight: bold;">{{duplicateReferenceCount}}</span> and Unique count is <span style="color: red; font-weight: bold;">{{uniqueReferenceCount}}</span></p>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>AccountNumber</th>
+                                <th>Description</th>
+                                <th>End Balance</th>
+                                <th>Mutation</th>
+                                <th>Reference</th>
+                                <th>Start Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-if="recordsListData.length == 0">
+                                <td colspan="7" align="center">Please Import the Issue CSV/XML File</td>
+                            </tr>
+                            <tr ng-repeat="person in recordsListData track by $index">
+                                <td>{{$index}}</td>
+                                <td>{{person['AccountNumber']}}</td>
+                                <td>{{person['Description']}}</td>
+                                <td>{{person['End Balance']}}</td>
+                                <td>{{person['Mutation']}}</td>
+                                <td>{{person['Reference']}}</td>
+                                <td>{{person['Start Balance']}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>Total no of End Balance Count is <span style="color: red; font-weight: bold;">{{EndBalanceValidateCount}}</span></p>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>AccountNumber</th>
+                                <th>Description</th>
+                                <th>End Balance</th>
+                                <th>Mutation</th>
+                                <th>Reference</th>
+                                <th>Start Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-if="EndBalanceValidateList.length == 0">
+                                <td colspan="7" align="center">Please Import the Issue CSV/XML File</td>
+                            </tr>
+                            <tr ng-repeat="person in EndBalanceValidateList track by $index">
+                                <td>{{$index}}</td>
+                                <td>{{person['AccountNumber']}}</td>
+                                <td>{{person['Description']}}</td>
+                                <td>{{person['End Balance']}}</td>
+                                <td>{{person['Mutation']}}</td>
+                                <td>{{person['Reference']}}</td>
+                                <td>{{person['Start Balance']}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="./src/js/lib/angular.min.js"></script>
+    <script src="./src/js/app.js"></script>
+</body>
+
+</html>
