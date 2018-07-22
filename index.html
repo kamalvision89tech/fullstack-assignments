@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="stylesheet" href="./src/css/lib/bootstrap.min.css">
+        <!-- Custom styles -->
+        <link href="./src/css/dashboard.css" rel="stylesheet">
+    </head>
+
+    <body ng-controller="RaboMainPage">
+        <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">{{title}}</a>
+            <ul class="navbar-nav px-3">
+                <li class="nav-item text-nowrap">
+                    <a class="nav-link" href="#">Sign out</a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                    <div class="sidebar-sticky">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">
+                                    <span data-feather="home"></span>
+                                    Front End Task
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <span data-feather="file"></span>
+                                    Sample Page
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+        
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Issue Dashboard</h1>
+                        <div class="btn-toolbar mb-2 mb-md-0">
+                            <div class="btn-group mr-2">
+                                <label class="btn btn-sm btn-outline-secondary" ng-click="raboscope.clearAllRaboUsers()">
+                                    Clear
+                                </label>
+                                <label class="btn btn-sm btn-outline-secondary">
+                                    Import
+                                    <input type="file"  ng-model="selectedCSVFile" id="selectedCSVFile" hidden>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="isValidFile" class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>Alert!</strong> Please select valid CSV File.
+                        <button type="button" class="close" ng-click="toggleClose()">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <input class="form-control form-control-dark w-100" type="text" ng-model="accessLevel['Issue count']" placeholder="Search by Issue Count" style="border: 1px solid #ccc" aria-label="Search">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>First name</th>
+                                    <th>Sur name</th>
+                                    <th>Issue count</th>
+                                    <th>Date of birth</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-if="!filteredPersons.length">
+                                    <td colspan="5" align="center">Please Import the Issue CSV File</td>
+                                </tr>
+                                <tr ng-repeat="p in filteredPersons = (issueListData | filter:accessLevel:strict)">
+                                    <td>{{$index    }}</td>
+                                    <td>{{p['First name']}}</td>
+                                    <td>{{p['Sur name']}}</td>
+                                    <td>{{p['Issue count']}}</td>
+                                    <td>{{p['Date of birth']}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </main>
+            </div>
+        </div>
+        <script src="./src/js/lib/jquery-3.3.1.js"></script>
+        <script src="./src/js/lib/bootstrap.min.js"></script>
+        <script src="./src/js/lib/angular.min.js"></script>
+        <script src="./src/js/app.js"></script>
+    </body>
+</html>
