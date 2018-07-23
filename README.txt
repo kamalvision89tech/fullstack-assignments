@@ -1,7 +1,7 @@
 Please make sure that nodejs(v6.11.2 or above) has installed in system:
 -----------------------------------------------------------------------
 
-Steps to deploy:
+Steps to Setup:
 ----------------
 
 1. Navigate ./fullstack-assignments folder
