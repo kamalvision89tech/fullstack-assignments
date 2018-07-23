@@ -10,3 +10,9 @@ Steps to deploy:
 4. Open http://localhost:8080/
 5. Import issue.CSV file
 6. Check filter by count number value only.
+
+
+Unit Test Case Run:
+-------------------
+
+npm run test
